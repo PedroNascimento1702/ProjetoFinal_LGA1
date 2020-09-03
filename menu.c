@@ -20,6 +20,7 @@ main ()
 	system("relogio");
 	gotoxy(2,8);
 	
+	fflush(stdin);
 	a = getch();
 	
 	switch(a)
@@ -35,8 +36,7 @@ main ()
 			getch();
 			break;
 		case '4':
-			printf("consultar");
-			getch();
+			system("consultarPedidos");
 			break;
 		case '5':
 			system("cls");
@@ -64,8 +64,6 @@ main ()
 	    	sleep(1);
 			break;
 		default:
-			printf("inválido");
-			getch();
 			goto inicio;
 			break;	
 	}

@@ -15,32 +15,64 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
 
  struct pedidos
 {   
+	int CodVenda;
 	int   CodProduto;
     int   Qtde;
 } pedido;
 
-struct produtos listaProdutos[];
-struct pedidos listaPedidos[];
+struct produtos listaProdutos[500];
+struct pedidos listaPedidos[500];
 FILE * arq;
-int c,i;
+FILE * arqPedidos;
+int c,i,CodVenda = 0;
 char a;
 float total;
+
+
+int retornaNovoCodVenda()
+{
+	arqPedidos = fopen ("pedidos.dat", "r"); 
+	if (arqPedidos == NULL) 
+	{ 
+		fprintf(stderr, "\nNão foi possível abrir um arquivo\n A venda será cancelada! \n"); 
+		getch();
+		system("venda");
+	}
+	
+	while(fread(&pedido, sizeof(struct pedidos), 1, arqPedidos)) 
+	{
+		if(CodVenda == 0)	
+			CodVenda = pedido.CodVenda;
+		else
+		{
+			if(pedido.CodVenda > CodVenda)
+			{
+				CodVenda = pedido.CodVenda;
+			}
+		}		
+	}
+
+	CodVenda++;
+	return CodVenda;
+}
 
 main ()
 {
 	c = 0;
+	int cod = retornaNovoCodVenda();
 	do
-	{
-		system("cls");
+	{	
+		//system("cls");
 		system ("color 4E");
 		system ("mode 100,30");
 		printf("____________________________________________________________________________________________________\n");
 		printf("                                  Mickey & Donald Drive Thru                                        \n");
 		printf("____________________________________________________________________________________________________\n");
-		printf("					  VENDA											\n");
-		
+		printf("					  VENDA	%i									\n",cod);
 		printf("----------------------------------------------------------------------------------------------------\n");
 		printf("Cardapio\n");
+		
+			
 		
 		arq = fopen ("produtos.dat", "r"); 
 		if (arq == NULL) 
@@ -68,27 +100,31 @@ main ()
 			printf("\n\n");
 		}
 		
+		pedido.CodVenda = cod;
+		
 		printf(" Insira o codigo do produto para selecionar\n "); fflush(stdin); scanf("%i",&pedido.CodProduto);
 		
 		printf("\n Produto selecionado. Insira a quantidade\n "); fflush(stdin); scanf("%i",&pedido.Qtde);
 		
+	
 		listaPedidos[c] = pedido;
 		c++;
 		
 		printf("\nAdicionar mais itens ao pedido? (n - nao | qualquer tecla-sim)\n "); a = getche();
 	}
 	while(a != 'n');
-		
-	arq = fopen ("pedidos.dat", "w"); 
-	if (arq == NULL) 
+	
+	arqPedidos = fopen ("pedidos.dat", "a"); 
+	if (arqPedidos == NULL) 
 	{ 
-		fprintf(stderr, "\nNão foi possível abrir o arquivo\n A venda será cancelada! \n"); 
+		fprintf(stderr, "\nNão foi possível abrir um arquivo\n A venda será cancelada! \n"); 
 		getch();
 		system("venda");
-	} 
+	}		
+	 
 	for(i=0;i<c;i++)
 	{
-		fwrite(&listaPedidos[i], sizeof(struct pedidos), 1, arq); 		
+		fwrite(&listaPedidos[i], sizeof(struct pedidos), 1, arqPedidos); 		
 	}
 	
 	fclose(arq);
@@ -129,6 +165,8 @@ main ()
 	printf("\n\n Total do pedido: R$%.2f",total);
 	printf("\n Prosseguir para pagamento (aperte qualquer tecla)");
 	getch();
+	fclose (arq); 
+	fclose (arqPedidos); 
 	system("pagamento");
 }
 
