@@ -20,8 +20,16 @@ struct produtos
     int   Qtde;
 } pedido;
 
+ struct pagamentos
+{   
+	int codpgto;
+	char  formapgto[256];
+    float   valorpgto;
+} pagamento;
+
 struct produtos listaProdutos[500];
 struct pedidos listaPedidos[500];
+struct pagamentos listaPagamentos[500];
 
 FILE * arqProdutos;
 FILE * arqPedidos;
@@ -55,12 +63,6 @@ main ()
 		fprintf(stderr, "\nError opening file\n"); 
 		exit (1); 
 	}
-/*	if (arqPagamentos == NULL) 
-	{ 
-		fprintf(stderr, "\nError opening file\n"); 
-		exit (1); 
-	}*/
-	
 	
 	while(fread(&produto, sizeof(struct produtos), 1, arqProdutos)) 
 	{
@@ -91,9 +93,25 @@ main ()
 				
 			Total += produto.CustProduto * pedido.Qtde;
 			printf("\n	Produto: %s     Valor Unid.: %.2f     Qtde: %i    Valor: %.2f",produto.NomeProduto,produto.CustProduto,pedido.Qtde,produto.CustProduto * pedido.Qtde);
+			
+			
 		}
 		else
 		{
+			arqPagamentos = fopen ("pagamentos.dat", "r"); 
+			if (arqPagamentos == NULL) 
+			{ 
+				fprintf(stderr, "\nNao foi possivel ler informacoes sobre o pagamento desta venda\n"); 
+			}
+			
+			while(fread(&pagamento, sizeof(struct pagamentos), 1, arqPagamentos)) 
+			{
+				if(pedido.CodVenda == pagamento.codpgto)
+				{
+					printf("\n			Forma de pagamento: %s",pagamento.formapgto);
+				}
+			}
+			fclose (arqPagamentos); 
 			printf("\n	                                                 Total : %.2f",Total);
 			Total = 0;
 			CodigoVendaAnterior = pedido.CodVenda;
@@ -116,8 +134,7 @@ main ()
 	
 	
 	fclose (arqProdutos); 
-	fclose (arqPedidos); 
-//	fclose (arqPagamentos); 
+	fclose (arqPedidos); 	
 	printf("\n\n Consulta concluida! \n Aperte qualquer tecla para sair...");
 		
 	getch();

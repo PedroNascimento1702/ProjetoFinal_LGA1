@@ -167,7 +167,12 @@ main ()
 	getch();
 	fclose (arq); 
 	fclose (arqPedidos); 
-	system("pagamento");
+	
+	char codigoVenda[30];
+	
+	sprintf(codigoVenda,"%s%d","pagamento -v ",cod);
+	
+	system(codigoVenda);
 }
 
 	
