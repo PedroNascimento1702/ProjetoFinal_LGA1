@@ -32,7 +32,7 @@ main ()
 			system("venda");
 			break;
 		case '3':
-			printf("fila");
+			system("fila");
 			getch();
 			break;
 		case '4':
