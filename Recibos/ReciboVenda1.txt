@@ -3,8 +3,7 @@
 ==========================================
 ITEM 		 QTDE 		 VALOR
 BigMac 	 2 		 R$20.00
-McPicanha 	 2 		 R$30.00
 ==========================================
 FORMA DE PAGAMENTO: Dinheiro
-VALOR TOTAL PAGO: R$0.00
+VALOR TOTAL PAGO: R$40.00
 ==========================================

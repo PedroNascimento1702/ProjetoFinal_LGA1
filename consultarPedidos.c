@@ -98,19 +98,7 @@ main ()
 		}
 		else
 		{
-			arqPagamentos = fopen ("pagamentos.dat", "r"); 
-			if (arqPagamentos == NULL) 
-			{ 
-				fprintf(stderr, "\nNao foi possivel ler informacoes sobre o pagamento desta venda\n"); 
-			}
 			
-			while(fread(&pagamento, sizeof(struct pagamentos), 1, arqPagamentos)) 
-			{
-				if(pedido.CodVenda == pagamento.codpgto)
-				{
-					printf("\n			Forma de pagamento: %s",pagamento.formapgto);
-				}
-			}
 			fclose (arqPagamentos); 
 			printf("\n	                                                 Total : %.2f",Total);
 			Total = 0;

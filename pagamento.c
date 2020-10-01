@@ -36,7 +36,8 @@ main (int argc, char **argv)
 		char choise = getche();
 		pagamentos pagamento;
 		cartoes cartao;
-		
+		pagamento.codpgto = codVenda;
+		cartao.Codpgto = codVenda;
 		switch(choise)
 		{
 			case '1':
@@ -53,7 +54,7 @@ main (int argc, char **argv)
 				int i;
 				for(i=4;i<=11;i++)
 				{
-					cartao.Numcartao[i] = "*";
+					cartao.Numcartao[i] = 42;
 				}
 				
 				CadastraCartao(cartao);
@@ -66,7 +67,7 @@ main (int argc, char **argv)
 				break;
 		}
 		
-		pagamento.codpgto = codVenda;
+		
 		strcpy(pagamento.formapgto,formaPagamento);	
 		pagamento.valorpgto = total;
 		

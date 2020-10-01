@@ -14,7 +14,7 @@ main ()
 	printf("____________________________________________________________________________________________________\n");
 	printf("                                  Mickey & Donald Drive Thru                                        \n");
 	printf("____________________________________________________________________________________________________\n");
-	printf("| Produtos (1) | Vender (2) | Fila de espera (3) | Logout (4) | Fechar (5) | ");
+	printf("| Produtos (1) | Vender (2) | Fila de espera (3) | Consultar Pedidos (4)  | Logout (5) | Fechar (5) | ");
 	gotoxy(20,13);
 	system("logo");
 	system("relogio");
@@ -36,6 +36,10 @@ main ()
 			getch();
 			break;
 		case '4':
+			system("consultarPedidos");
+			getch();
+			break;
+		case '5':
 			system("cls");
 				system ("color 4E");
 			printf("Saindo");
@@ -48,7 +52,7 @@ main ()
 	    	sleep(1);
 			system("splash");
 			break;
-		case '5':
+		case '6':
 			system("cls");
 			printf("Fechando");
 				system ("color 4E");

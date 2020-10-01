@@ -1,9 +1,11 @@
 ==========================================
+======  Mickey & Donald Drive Thru  ======
+==========================================
 ==============RECIBO DA VENDA=============
 ==========================================
 ITEM 		 QTDE 		 VALOR
-McPicanha 	 3 		 R$30.00
+BigMac 	 1 		 R$20.00
 ==========================================
-FORMA DE PAGAMENTO: Dinheiro
-VALOR TOTAL PAGO: R$90.00
+FORMA DE PAGAMENTO: Cartao de Credito/Debito
+VALOR TOTAL PAGO: R$20.00
 ==========================================

@@ -55,20 +55,20 @@ main (int argc, char **argv)
 			printf("\n\nNenhum pedido na fila de espera!");
 			
 		char c;
-		printf("\n\n\nPressione 'R' para remover o primeiro da fila ou 'S' para sair ");
+		printf("\n\n\nPressione 'r' para remover o primeiro da fila ou 's' para sair ");
 		
 		do
 		{
 			c = getch();
 		}
-		while(c != 'R' && c != 'S');
+		while(c != 'r' && c != 's');
 		
-		if(c == 'S')
+		if(c == 's')
 		{
 			system("menu");
 		}
 		
-		if(c == 'R')
+		if(c == 'r')
 		{
 			listaFila[primeiroFila].removido = 1;
 			
