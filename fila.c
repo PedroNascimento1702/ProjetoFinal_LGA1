@@ -2,19 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "libCoresSom.h"
+#include "util.h"
 #include <time.h>
-
-size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
-
- struct filas
-{   
-	int   CodVenda;
-    int   removido;
-} fila;
-
-struct filas listaFila[500];
-
-FILE * arqFila;
 
 main (int argc, char **argv)
 {
@@ -33,52 +22,13 @@ main (int argc, char **argv)
 		    }
 	   }	 
 		system("cls");
-		system ("color 4E");
-		system ("mode 100,30");
-		printf("____________________________________________________________________________________________________\n");
-		printf("                                  Mickey & Donald Drive Thru                                        \n");
-		printf("____________________________________________________________________________________________________\n");
-		printf("					FILA DE ESPERA									\n");
-		
-		printf("----------------------------------------------------------------------------------------------------\n");
-		
-		
-		
-		arqFila = fopen ("fila.dat", "r");
-				
-		if (arqFila == NULL) 
-		{ 
-			fprintf(stderr, "\nError opening file\n"); 
-			exit (1); 
-		}
-		
-		int contagemFila = 0;
-		
-		while(fread(&fila, sizeof(struct filas), 1, arqFila)) 
-		{
-			listaFila[contagemFila] = fila;
-			contagemFila++;		
-		}
-		
-		fclose(arqFila);
+		cabecalho("LISTA DE ESPERA");
+					
+		ListarFila();
 		
 		if(codVenda > 0)
 		{
-			fila.CodVenda = codVenda;
-			fila.removido = 0;
-			listaFila[contagemFila] =fila;
-			
-			arqFila = fopen ("fila.dat", "a");
-				
-			if (arqFila == NULL) 
-			{ 
-				fprintf(stderr, "\nError opening file\n"); 
-				exit (1); 
-			}
-			
-			fwrite(&fila, sizeof(struct filas), 1, arqFila); 
-			
-			fclose(arqFila);
+			AdicionarPedidoAFila(codVenda);
 		}
 		
 		printf("\nPedidos em espera: (Organizados em codigos da venda)\n\n");
@@ -115,27 +65,14 @@ main (int argc, char **argv)
 		
 		if(c == 'S')
 		{
-			exit(0);
+			system("menu");
 		}
 		
 		if(c == 'R')
 		{
 			listaFila[primeiroFila].removido = 1;
 			
-			arqFila = fopen ("fila.dat", "w");
-				
-			if (arqFila == NULL) 
-			{ 
-				fprintf(stderr, "\nError opening file\n"); 
-				exit (1); 
-			}
-			
-			for(i=0;i<=contagemFila;i++)
-			{
-				fwrite(&listaFila[i], sizeof(struct filas), 1, arqFila); 
-			}
-		
-			fclose(arqFila);
+			SalvarFila();
 
 			char codigoVenda[30];	
 			sprintf(codigoVenda,"%s%d","leve -v ",listaFila[primeiroFila].CodVenda);			

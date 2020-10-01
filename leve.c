@@ -3,16 +3,7 @@
 #include <conio.h>
 #include <string.h>
 #include "libCoresSom.h"
-
-struct pagamentos
-{   
-	int codpgto;
-	char  formapgto[256];
-    float   valorpgto;
-} pagamento;
-
-
-FILE * arqPagamento;
+#include "util.h"
 
 main (int argc, char **argv)
 {
@@ -32,43 +23,14 @@ main (int argc, char **argv)
 	   }	 
 
 		system("cls");
-		system ("color 4E");
-		system ("mode 100,30");
-		printf("____________________________________________________________________________________________________\n");
-		printf("                                  Mickey & Donald Drive Thru                                        \n");
-		printf("____________________________________________________________________________________________________\n");
-		printf("					LEVE									\n");
+		cabecalho("LEVE");
+			
+		ConsultarVenda(codVenda);
 		
-		printf("----------------------------------------------------------------------------------------------------\n");
-		
-		
-		
-		arqPagamento = fopen ("pagamentos.dat", "r");
-				
-		if (arqPagamento == NULL) 
-		{ 
-			fprintf(stderr, "\nError opening file\n"); 
-			exit (1); 
-		}
-		
-		while(fread(&pagamento, sizeof(struct pagamentos), 1, arqPagamento)) 
-		{
-			if(pagamento.codpgto == codVenda)
-			{
-				printf("\n PEDIDO PAGO COM ");
-				
-				if (strcmp (pagamento.formapgto, "Dinheiro") == 0)
-					textcolor(2,4);
-				if(strcmp (pagamento.formapgto, "Cheque") == 0)
-					textcolor(9,4);
-				if(strcmp (pagamento.formapgto, "Cartao de Credito/Debito") == 0)
-					textcolor(13,4);
-					
-				printf("%s",pagamento.formapgto);
-				textcolor(14,4);
-			}
-		}	
-		fclose(arqPagamento);
+		char NomeArquivoVenda[30];	
+		sprintf(NomeArquivoVenda,"%s%d%s","notepad Recibos/ReciboVenda",codVenda,".txt");
+	
+		system(NomeArquivoVenda);
 		printf("\n\n  Venda finalizada! Pressione qualquer tecla para voltar ao menu principal.");
 		getch();
 		
