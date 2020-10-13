@@ -1,10 +1,13 @@
 ==========================================
+======  Mickey & Donald Drive Thru  ======
+==========================================
 ==============RECIBO DA VENDA=============
 ==========================================
 ITEM 		 QTDE 		 VALOR
-McPicanha 	 1 		 R$30.00
-McLancheFeliz 	 2 		 R$23.00
+McPicanha 	 2 		 R$20.00
+Batata 	 2 		 R$10.00
+CocaCola 	 2 		 R$8.00
 ==========================================
-FORMA DE PAGAMENTO: Dinheiro
+FORMA DE PAGAMENTO: Cartao de Credito/Debito
 VALOR TOTAL PAGO: R$76.00
 ==========================================

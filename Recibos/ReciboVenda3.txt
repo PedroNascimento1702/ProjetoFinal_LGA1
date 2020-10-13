@@ -4,8 +4,9 @@
 ==============RECIBO DA VENDA=============
 ==========================================
 ITEM 		 QTDE 		 VALOR
-BigMac 	 	 2 		 R$20.00
+McPicanha 	 3 		 R$20.00
+Batata 	 	 1 		 R$10.00
 ==========================================
-FORMA DE PAGAMENTO: Cartao de Credito/Debito
-VALOR TOTAL PAGO: R$40.00
+FORMA DE PAGAMENTO: Dinheiro
+VALOR TOTAL PAGO: R$70.00
 ==========================================
