@@ -4,10 +4,8 @@
 ==============RECIBO DA VENDA=============
 ==========================================
 ITEM 		 QTDE 		 VALOR
-McPicanha 	 1 		 R$20.00
-Batata 	 1 		 R$10.00
-CocaCola 	 1 		 R$8.00
+McLanche 	 4 		 R$10.00
 ==========================================
-FORMA DE PAGAMENTO: 
-VALOR TOTAL PAGO: R$38.00
+FORMA DE PAGAMENTO: Dinheiro
+VALOR TOTAL PAGO: R$40.00
 ==========================================
